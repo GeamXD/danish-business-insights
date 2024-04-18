@@ -36,7 +36,13 @@ def parse_hits_to_dataframe(hits):
         cvr_nummer = hit['_source']['Vrvirksomhed']['cvrNummer']
         navn = hit['_source']['Vrvirksomhed']['navne'][0]['navn']
         kommune_navn = hit['_source']['Vrvirksomhed']['beliggenhedsadresse'][0]['kommune']['kommuneNavn']
+        antal_ansatte = data["_source"]["Vrvirksomhed"]["aarsbeskaeftigelse"][-1]["antalAnsatte"]
+        # total_employees = sum(entry["antalAnsatte"] for entry in data["_source"]["Vrvirksomhed"]["aarsbeskaeftigelse"])
+        # Parsing dates and formatting them as strings
+        # start_dates = [entry["periode"]["gyldigFra"] for entry in data["_source"]["Vrvirksomhed"]["navne"]]
+        # end_dates = [entry["periode"]["gyldigTil"] if entry["periode"]["gyldigTil"] else "Present" for entry in data["_source"]["Vrvirksomhed"]["navne"]]
 
+        
         parsed_data.append({'CVR Nummer': cvr_nummer, 'Navn': navn, 'Kommune Navn': kommune_navn})
 
     return pd.DataFrame(parsed_data)
