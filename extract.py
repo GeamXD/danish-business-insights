@@ -26,7 +26,7 @@ def extract_data_from_files(directory):
                     })
     return data_list
 
-def save_as_csv(data_list, output_filename='final_2_output.csv'):
+def save_as_csv(data_list, output_filename='final_output.csv'):
     df = pd.DataFrame(data_list)
     df.to_csv(output_filename, index=False)
     print(f"Data saved as '{output_filename}'")
