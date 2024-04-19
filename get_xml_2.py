@@ -24,7 +24,7 @@ response = requests.post(url, auth=(username, password), headers=headers, json=q
 # Check if request was successful
 if response.status_code == 200:
     # Save response data to a file
-    with open('response_data2.json', 'w') as file:
+    with open('response_data2_new.json', 'w') as file:
         file.write(response.text)
     print("Data saved to response_data.json")
 else:
