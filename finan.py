@@ -142,9 +142,9 @@ def extract_financial_data_from_links(file_path):
     return data
 
 # Example usage
-file_path = ''  # Path to the text file containing XML links
+file_path = '/workspaces/danish-business-insights/data_xmls/xml_urls.txt'  # Path to the text file containing XML links
 financial_data_df = extract_financial_data_from_links(file_path)
 
 
-with open('parsed_xml_1.json', 'w') as file:
+with open('parsed_xml_2.json', 'w') as file:
     json.dump(financial_data_df, file)
