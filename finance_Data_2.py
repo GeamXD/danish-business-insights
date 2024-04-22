@@ -1,6 +1,8 @@
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+import json
+
 
 def extract_financial_data_from_links(file_path):
     # Create an empty dictionary to store data
@@ -66,8 +68,10 @@ def extract_financial_data_from_links(file_path):
         link = link.strip()  # Remove leading/trailing whitespace
         response = requests.get(link)
         if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'xml')
+            soup = BeautifulSoup(response.text, 'lxml')
             context = soup.find_all()
+            # print(context)
+            # exit
             for tag in context:
                 tag_name = tag.name.replace("{http://www.xbrl.org/2003/instance}", "")
                 if tag_name in data:
@@ -83,4 +87,8 @@ def extract_financial_data_from_links(file_path):
 # Example usage
 file_path = 'sample.txt'  # Path to the text file containing XML links
 financial_data_df = extract_financial_data_from_links(file_path)
-print(financial_data_df)
+
+
+with open('ai.json', 'w') as file:
+    json.dump(financial_data_df, file)
+# print(financial_data_df)
